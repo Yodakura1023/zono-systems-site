@@ -38,7 +38,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { email, name, company, subject, message } = req.body ?? {};
+    const body = req.body ?? {};
+    const email = String(body.email ?? "").trim();
+    const name = String(body.name ?? "").trim();
+    const company = String(body.company ?? "").trim();
+    const subject = String(body.subject ?? "").trim();
+    const message = String(body.message ?? "").trim();
+
+    const fromEmail = String(process.env.CONTACT_FROM_EMAIL ?? "").trim();
+    const toEmail = String(process.env.CONTACT_TO_EMAIL ?? "").trim();
 
     if (!email || !subject || !message) {
       return res.status(400).json({
@@ -46,21 +54,27 @@ export default async function handler(req, res) {
       });
     }
 
-    if (String(message).length > 1000) {
+    if (!fromEmail || !toEmail || !process.env.RESEND_API_KEY) {
+      return res.status(500).json({
+        error: "Missing environment variables.",
+      });
+    }
+
+    if (message.length > 1000) {
       return res.status(400).json({
         error: "Message must be 1000 characters or less.",
       });
     }
 
-    const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL,
-      to: [process.env.CONTACT_TO_EMAIL],
-      replyTo: email,
+    const { data, error } = await resend.emails.send({
+      from: `Zono Systems <${fromEmail}>`,
+      to: [toEmail],
       subject: `[Zono Systems] ${subject}`,
+      // まずは切り分けのため reply-to を外す
       text: `
 Email: ${email}
-Name: ${name || ""}
-Company: ${company || ""}
+Name: ${name}
+Company: ${company}
 Subject: ${subject}
 
 Message:
@@ -70,13 +84,18 @@ ${message}
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      return res.status(500).json({ error: "Failed to send email." });
+      console.error("Resend error details:", error);
+      return res.status(500).json({
+        error: error.message || JSON.stringify(error),
+      });
     }
 
+    console.log("Resend success:", data);
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("Contact API error:", err);
-    return res.status(500).json({ error: "Internal server error." });
+    console.error("Contact API unexpected error:", err);
+    return res.status(500).json({
+      error: err?.message || "Internal server error.",
+    });
   }
 }
