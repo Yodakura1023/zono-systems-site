@@ -84,7 +84,7 @@ export default function App() {
           about: "About",
           contact: "Contact",
         },
-        badge: "Internal apps • Workflow improvement • Manufacturing support experience",
+        badge: "Internal apps • Workflow improvement • Manufacturing and logistics support experience",
         heroTitle:
           "Practical internal business applications for small and mid-sized businesses",
         heroBody:
@@ -143,23 +143,21 @@ export default function App() {
             ],
           },
           {
-            key: "manufacturing",
-            title: "Manufacturing Support Applications",
-            description:
-              "PC-based support tools with experience in manufacturing-related workflows, reporting, and shop-floor support.",
-            tag: "Shop Floor Support",
-            icon: Factory,
-            detailsTitle: "Manufacturing Support Applications",
-            detailsIntro:
-              "These applications are focused on practical manufacturing operations, shop-floor visibility, and support tools that connect digital workflows to real equipment and processes.",
-            bullets: [
-              "Traceability systems and Andon systems",
-              "Poka-yoke support tools and ECU writing systems",
-              "RFID writing systems and tablet-based paperless inspection systems",
-              "Support applications tied to reporting, process checks, and operational visibility",
-              "Integration with inventory control and ordering features for broader DX improvement",
-            ],
-          },
+          key: "manufacturing",
+          title: "Manufacturing & Logistics Support Applications",
+          description:
+            "Support applications for manufacturing and logistics workflows, reporting, paperless operations, and operational visibility.",
+          tag: "Operations Support",
+          icon: Factory,
+          detailsTitle: "Manufacturing & Logistics Support Applications",
+          detailsIntro:
+            "These applications focus on practical support tools for manufacturing and logistics operations, especially paperless workflows, reporting, and visibility improvement.",
+          bullets: [
+            "Support applications for forms, reporting, and operational visibility",
+            "Paperless systems using tablets",
+            "DX improvements by integrating inventory control and ordering functions",
+          ],
+        },
         ],
         detailsButton: "View Details",
         modalFeatures: "Example capabilities",
@@ -205,7 +203,7 @@ export default function App() {
         contactLabel: "Contact",
         contactTitle: "Let’s talk about your workflow",
         contactBody:
-          "If you are exploring a practical internal tool, workflow improvement system, or manufacturing support application, this site can serve as the first point of contact.",
+          "If you are exploring a practical internal tool, workflow improvement system, or manufacturing and logistics support application, this site can serve as the first point of contact.",
         contactCta: "Contact",
         linkedin: "LinkedIn",
         languageToggle: "日本語",
@@ -239,7 +237,7 @@ export default function App() {
           about: "概要",
           contact: "お問い合わせ",
         },
-        badge: "業務改善アプリ • ワークフロー改善 • 製造業向けPCアプリ経験あり",
+        badge: "業務改善アプリ • ワークフロー改善 • 製造業・物流業向けサポート経験あり",
         heroTitle:
           "中小企業向けの、実務に合った業務改善アプリと社内システム",
         heroBody:
@@ -298,23 +296,21 @@ export default function App() {
             ],
           },
           {
-            key: "manufacturing",
-            title: "製造業向けサポートアプリ",
-            description:
-              "製造現場に関わる業務フロー、帳票、PCベースの補助ツールに関する経験も活かせます。",
-            tag: "現場支援",
-            icon: Factory,
-            detailsTitle: "製造業向けサポートアプリ",
-            detailsIntro:
-              "製造現場の実務に即したサポートアプリや可視化ツールを幅広く提供できます。",
-            bullets: [
-              "トレーサビリティシステム、アンドンシステム",
-              "ポカヨケシステム、ECU 書き込み装置システム",
-              "RFID 書き込みシステム、タブレット点検システム",
-              "帳票、報告、現場可視化に関する支援アプリ",
-              "在庫管理や発注機能との組み合わせによる DX 改善",
-            ],
-          },
+          key: "manufacturing",
+          title: "製造業・物流業向けのサポートアプリ",
+          description:
+            "製造業・物流業の業務フロー、帳票、ペーパーレス運用、現場可視化を支援するアプリを提供します。",
+          tag: "業務支援",
+          icon: Factory,
+          detailsTitle: "製造業・物流業向けのサポートアプリ",
+          detailsIntro:
+            "製造業・物流業の現場で使いやすい帳票、ペーパーレス運用、可視化系のサポートアプリを提供できます。",
+          bullets: [
+            "帳票、報告、現場可視化に関する支援アプリ",
+            "タブレットを使用したペーパーレスシステム",
+            "在庫管理や発注機能との組み合わせによる DX 改善",
+          ],
+        },
         ],
         detailsButton: "詳細を見る",
         modalFeatures: "具体的なサービス例",
@@ -360,7 +356,7 @@ export default function App() {
         contactLabel: "お問い合わせ",
         contactTitle: "業務フローの相談から始めましょう",
         contactBody:
-          "業務改善ツール、社内システム、製造業向けPCアプリなどをご検討中でしたら、まずは気軽にご相談ください。",
+          "業務改善ツール、社内システム、製造業・物流業向けサポートアプリなどをご検討中でしたら、まずは気軽にご相談ください。",
         contactCta: "Contact",
         linkedin: "LinkedIn",
         languageToggle: "English",
