@@ -2,6 +2,15 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function buildHtml({ email, name, company, subject, message }) {
   return `
     <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #111827;">
@@ -9,23 +18,23 @@ function buildHtml({ email, name, company, subject, message }) {
       <table style="border-collapse: collapse; width: 100%; max-width: 720px;">
         <tr>
           <td style="padding: 8px 0; font-weight: bold; width: 140px;">Email</td>
-          <td style="padding: 8px 0;">${email || ""}</td>
+          <td style="padding: 8px 0;">${escapeHtml(email)}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; font-weight: bold;">Name</td>
-          <td style="padding: 8px 0;">${name || ""}</td>
+          <td style="padding: 8px 0;">${escapeHtml(name)}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; font-weight: bold;">Company</td>
-          <td style="padding: 8px 0;">${company || ""}</td>
+          <td style="padding: 8px 0;">${escapeHtml(company)}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; font-weight: bold;">Subject</td>
-          <td style="padding: 8px 0;">${subject || ""}</td>
+          <td style="padding: 8px 0;">${escapeHtml(subject)}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; font-weight: bold; vertical-align: top;">Message</td>
-          <td style="padding: 8px 0; white-space: pre-wrap;">${message || ""}</td>
+          <td style="padding: 8px 0; white-space: pre-wrap;">${escapeHtml(message)}</td>
         </tr>
       </table>
     </div>
@@ -69,8 +78,8 @@ export default async function handler(req, res) {
     const { data, error } = await resend.emails.send({
       from: `Zono Systems <${fromEmail}>`,
       to: [toEmail],
+      replyTo: email,
       subject: `[Zono Systems] ${subject}`,
-      // まずは切り分けのため reply-to を外す
       text: `
 Email: ${email}
 Name: ${name}
